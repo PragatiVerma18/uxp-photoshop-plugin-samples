@@ -1,25 +1,20 @@
-const styles = require("./styles.css");
-const Vue = require("vue").default;
-const hello = require("./hello.vue").default;
+import Vue from "vue";
+import hello from "./hello.vue";
 
-let dialog;
-function getDialog() {
-    document.body.innerHTML = `<dialog><div id="container"></div></dialog>`;
-    dialog = document.querySelector("dialog");
-    var app4 = new Vue({
-      el: "#container",
-      components: { hello },
-      render(h) {
-        return h(hello, { props: { dialog } });
-      },
-    });
-  return dialog;
-}
+const { entrypoints } = require("uxp");
 
-module.exports = {
-  commands: {
-    menuCommand: function () {
-      getDialog().showModal();
-    },
-  },
-};
+entrypoints.setup({
+  panels: {
+    helloworld: {
+      show(event) {
+        var app4 = new Vue({
+          el: "#container",
+          components: { hello },
+          render(h) {
+            return h(hello);
+          },
+        });
+      }
+    }
+  }
+});

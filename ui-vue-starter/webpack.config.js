@@ -6,8 +6,7 @@ module.exports = {
   entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
-    libraryTarget: "commonjs2",
+    filename: "main.js"
   },
   devtool: "cheap-eval-source-map", 
   externals: {
